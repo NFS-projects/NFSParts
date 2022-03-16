@@ -34,6 +34,8 @@ import com.needforspeed.settings.preferences.VibrationSeekBarPreference;
 import com.needforspeed.settings.kcal.KCalSettingsActivity;
 import com.needforspeed.settings.fps.FPSInfoService;
 
+import com.google.android.material.card.MaterialCardView;
+
 import com.needforspeed.settings.R;
 
 import java.lang.Math.*;

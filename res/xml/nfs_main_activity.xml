@@ -4,8 +4,8 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        android:layout="@layout/style_version" />
-
+        android:layout="@layout/xd_firmware_header" />
+        
 	<PreferenceCategory
         android:title="@string/audio">
 
@@ -118,6 +118,20 @@
                 android:targetPackage="com.needforspeed.settings"
                 android:action="android.intent.action.MAIN"
                 android:targetClass="com.needforspeed.settings.vibration.VibrationActivity" />
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:title="About">
+
+        <PreferenceScreen
+            android:icon="@drawable/ic_parts_device"
+            android:title="@string/about_anu_title">
+            <intent
+                android:targetPackage="com.needforspeed.settings"
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.needforspeed.settings.about.AboutActivity" />
         </PreferenceScreen>
 
     </PreferenceCategory>

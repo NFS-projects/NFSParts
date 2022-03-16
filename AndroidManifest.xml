@@ -151,6 +151,15 @@
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name=".about.AboutActivity"
+            android:label="@string/about_anu_title"
+            android:theme="@style/Theme.SubSettingsBase">
+            <intent-filter>
+                <action android:name="com.android.settings.action.IA_SETTINGS" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".doze.DozeService"
@@ -177,6 +186,17 @@
             android:name=".dirac.DiracTileService"
             android:icon="@drawable/dirac_qs_tile_icon"
             android:label="@string/dirac_qs_tile_title"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+        
+        <service
+            android:name=".NFSPartsTile"
+            android:enabled="true"
+            android:icon="@drawable/qs_xiaomi"
+            android:label="@string/nfs_parts_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>

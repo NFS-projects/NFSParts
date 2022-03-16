@@ -161,4 +161,18 @@
     <!-- FPS Info -->
     <string name="fps_info_title">FPS Info Overlay</string>
     <string name="fps_info_summary">Show overlay with current frames per second</string>
+    
+    <!-- xd. About Phone -->
+    <string name="xd_device_name">Device name</string>
+    <string name="xd_device_name_summary">Redmi 5</string>
+    <string name="xd_chipset_type">Chipset</string>
+    <string name="xd_chipset_type_summary">Qualcomm Snapdragon™ 450</string>
+    <string name="xd_gpu">GPU</string>
+    <string name="xd_gpu_summary">Adreno 506</string>
+    <string name="xd_camera_mp">Camera</string>
+    <string name="xd_camera_mp_summary">12MP+5MP Front Flash Camera</string>
+    <string name="xd_screen_type">Screen</string>
+    <string name="xd_screen_type_summary">IPS LCD 5.7 INC</string>
+    
+    <string name="about_anu_title">About Developer</string>
 </resources>
