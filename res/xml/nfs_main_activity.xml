@@ -45,14 +45,13 @@
         android:title="@string/display">
 
         <PreferenceScreen
-            android:key="device_kcal"
-            android:persistent="false"
-            android:title="@string/device_kcal_title"
-            android:icon="@drawable/ic_color">
+            android:icon="@drawable/ic_kcal"
+            android:title="@string/kcal_settings_title"
+            android:summary="@string/kcal_settings_summary">
             <intent
+                android:targetPackage="com.needforspeed.settings"
                 android:action="android.intent.action.MAIN"
-                android:targetClass="com.needforspeed.settings.KCalSettingsActivity"
-                android:targetPackage="com.needforspeed.settings" />
+                android:targetClass="com.needforspeed.settings.display.KcalSettingsActivity" />
         </PreferenceScreen>
 
         <PreferenceScreen

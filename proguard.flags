@@ -14,10 +14,6 @@
   *;
 }
 
--keep class com.needforspeed.settings.kcal.* {
-  *;
-}
-
 -keep class com.needforspeed.settings.torch.* {
   *;
 }

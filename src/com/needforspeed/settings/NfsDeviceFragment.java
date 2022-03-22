@@ -31,7 +31,6 @@ import com.needforspeed.settings.preferences.CustomSeekBarPreference;
 import com.needforspeed.settings.preferences.SecureSettingListPreference;
 import com.needforspeed.settings.preferences.SecureSettingSwitchPreference;
 import com.needforspeed.settings.preferences.VibrationSeekBarPreference;
-import com.needforspeed.settings.kcal.KCalSettingsActivity;
 import com.needforspeed.settings.fps.FPSInfoService;
 
 import com.google.android.material.card.MaterialCardView;
@@ -53,8 +52,6 @@ public class NfsDeviceFragment extends PreferenceFragment implements
     public static final String FSYNC_PATH = "/sys/kernel/dyn_fsync/Dyn_fsync_active";
 
     public static final String PREF_KEY_FPS_INFO = "fps_info";
-
-    private static final String PREF_DEVICE_KCAL = "device_kcal";
 
     private static Context mContext;
 
@@ -83,13 +80,6 @@ public class NfsDeviceFragment extends PreferenceFragment implements
         fpsInfo.setChecked(prefs.getBoolean(PREF_KEY_FPS_INFO, false));
         fpsInfo.setOnPreferenceChangeListener(this);
 
-        PreferenceScreen kcal = findPreference(PREF_DEVICE_KCAL);
-
-        kcal.setOnPreferenceClickListener(preference -> {
-            Intent intent = new Intent(getActivity().getApplicationContext(), KCalSettingsActivity.class);
-            startActivity(intent);
-            return true;
-        });
     }
 
     @Override

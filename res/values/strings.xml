@@ -116,42 +116,6 @@
     <string name="default_value">Default Value</string>
     <string name="edit_hint">Value between %1$d and %2$d</string>
 
-    <!-- KCAL -->
-    <string name="device_kcal_title">Display Color Calibration</string>
-    <string name="advanced_settings_kcal">Display Color Calibration</string>
-    <string name="cat_colormanagement">Color Settings</string>
-    <string name="cat_calibration">Display Calibration</string>
-
-    <string name="kcal_enabled">On</string>
-    <string name="kcal_disabled">Off</string>
-    <string name="set_on_boot">Set On Boot</string>
-    <string name="color_red">Red</string>
-    <string name="color_green">Green</string>
-    <string name="color_blue">Blue</string>
-    <string name="color_minimum">Minimum</string>
-    <string name="saturation">Saturation</string>
-    <string name="value">Value</string>
-    <string name="contrast">Contrast</string>
-    <string name="hue">Hue</string>
-    <string name="grayscale">Grayscale Display</string>
-
-    <!-- Presets For KCAL -->
-    <string name="presets_dialog_title">Select Preset</string>
-    <string name="preset_default">Default</string>
-    <string name="preset_version_1">Version 1</string>
-    <string name="preset_version_2">Version 2</string>
-    <string name="preset_version_3">Version 3</string>
-    <string name="preset_triluminous">Triluminous</string>
-    <string name="preset_deep_black_white">Deep Black and White</string>
-    <string name="preset_deep_natural">Deep Natural</string>
-    <string name="preset_cool_amoled">Cool Amoled</string>
-    <string name="preset_extreme_amoled">Extreme Amoled</string>
-    <string name="preset_warm_amoled">Warm Amoled</string>
-    <string name="preset_hybrid_mamba">Hybrid Mamba</string>
-
-    <string name="kcal_presets">@string/presets_dialog_title</string>
-    <string name="kcal_reset">Reset</string>
-
     <!-- Torch -->
     <string name="torch_title">Torch Settings</string>
     <string name="torch_summary">Flashlight white/yellow control</string>
@@ -175,4 +139,20 @@
     <string name="xd_screen_type_summary">IPS LCD 5.7 INC</string>
     
     <string name="about_anu_title">About Developer</string>
+    
+    <!-- Kcal settings -->
+    <string name="kcal_settings_title">Display colors</string>
+    <string name="kcal_settings_summary">Adjust the color of your display</string>
+    <string name="kcal_enable_title">Enable display color configuration</string>
+    <string name="kcal_enable_summary">Enables the configuration of the display color for a custom adjustment</string>
+    <string name="kcal_not_supported">Display color settings is not supported by the kernel</string>
+    <string name="red_slider_title">Red</string>
+    <string name="green_slider_title">Green</string>
+    <string name="blue_slider_title">Blue</string>    
+    <string name="kcal_rgb_preference_category_title">RGB</string>
+    <string name="kcal_calibration_preference_category_title">Color calibration</string>
+    <string name="saturation_slider_title">Saturation</string>
+    <string name="reset_default_button_title">Reset to default configuration</string>
+    <string name="reset_default_button_summary">Reset all the configurations of this screen</string>
+    <string name="contrast_slider_title">Contrast</string>
 </resources>
