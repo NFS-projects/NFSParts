@@ -29,4 +29,8 @@
      <dimen name="xd_about_phone_ill_height">275dp</dimen>
      <dimen name="xd_about_phone_ill_width">125dp</dimen>
 
+     <!-- xd. Toolbar -->
+     <dimen name="xd_toolbar_height">225dp</dimen>
+     <dimen name="xd_toolbar_expanded_title_margin_start">21dp</dimen>
+     <dimen name="xd_toolbar_expanded_title_margin_end">75dp</dimen>
 </resources>
