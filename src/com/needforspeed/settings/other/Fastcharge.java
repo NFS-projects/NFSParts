@@ -15,46 +15,48 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.needforspeed.settings;
+package com.needforspeed.settings.other;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.provider.Settings;
 import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
-import androidx.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;;
 
-import com.needforspeed.settings.NfsDeviceFragment;
+import com.needforspeed.settings.R;
 
-public class FpBoost implements OnPreferenceChangeListener {
+import com.needforspeed.settings.other.OtherFragment;
+
+public class Fastcharge implements OnPreferenceChangeListener {
 
     private Context mContext;
 
-    public FpBoost(Context context) {
+    public Fastcharge(Context context) {
         mContext = context;
     }
 
     public static String getFile() {
-        if (FileUtils.fileWritable(NfsDeviceFragment.FP_BOOST_PATH)) {
-            return NfsDeviceFragment.FP_BOOST_PATH;
+        if (OtherUtils.fileWritable(OtherFragment.USB_FASTCHARGE_PATH)) {
+            return OtherFragment.USB_FASTCHARGE_PATH;
         }
         return null;
     }
 
     public static boolean isSupported() {
-        return FileUtils.fileWritable(getFile());
+        return OtherUtils.fileWritable(getFile());
     }
 
     public static boolean isCurrentlyEnabled(Context context) {
-        return FileUtils.getFileValueAsBoolean(getFile(), false);
+        return OtherUtils.getFileValueAsBoolean(getFile(), false);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object value) {
         final String key = preference.getKey();
         switch (key) {
-            case NfsDeviceFragment.PREF_FP_BOOST:
-                FileUtils.setValue(NfsDeviceFragment.FP_BOOST_PATH, (boolean) value);
+            case OtherFragment.PREF_USB_FASTCHARGE:
+                OtherUtils.setValue(OtherFragment.USB_FASTCHARGE_PATH, (boolean) value);
                 break;
 
             default:

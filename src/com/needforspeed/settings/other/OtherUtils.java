@@ -1,20 +1,4 @@
-/*
- * Copyright (C) 2018-2019 The Xiaomi-SDM660 Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License
- */
-
-package com.needforspeed.settings;
+package com.needforspeed.settings.other;
 
 import android.os.SystemProperties;
 
@@ -24,9 +8,9 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FileUtils {
+public final class OtherUtils {
 
-    static boolean fileWritable(String filename) {
+    public static boolean fileWritable(String filename) {
         return fileExists(filename) && new File(filename).canWrite();
     }
 
@@ -53,29 +37,6 @@ public class FileUtils {
         }
     }
 
-    public static String readLine(String filename) {
-        if (filename == null) {
-            return null;
-        }
-        BufferedReader br = null;
-        String line;
-        try {
-            br = new BufferedReader(new FileReader(filename), 1024);
-            line = br.readLine();
-        } catch (IOException e) {
-            return null;
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    // ignore
-                }
-            }
-        }
-        return line;
-    }
-
     public static void setValue(String path, int value) {
         if (fileWritable(path)) {
             if (path == null) {
@@ -92,7 +53,7 @@ public class FileUtils {
         }
     }
 
-    static void setValue(String path, double value) {
+    public static void setValue(String path, double value) {
         if (fileWritable(path)) {
             if (path == null) {
                 return;
@@ -124,7 +85,30 @@ public class FileUtils {
         }
     }
 
-    static String getValue(String filename) {
+    public static String readLine(String filename) {
+        if (filename == null) {
+            return null;
+        }
+        BufferedReader br = null;
+        String line;
+        try {
+            br = new BufferedReader(new FileReader(filename), 1024);
+            line = br.readLine();
+        } catch (IOException e) {
+            return null;
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    // ignore
+                }
+            }
+        }
+        return line;
+    }
+
+    public static String getValue(String filename) {
         if (filename == null) {
             return null;
         }
@@ -138,7 +122,7 @@ public class FileUtils {
         return line;
     }
 
-    static boolean getFileValueAsBoolean(String filename, boolean defValue) {
+    public static boolean getFileValueAsBoolean(String filename, boolean defValue) {
         String fileValue = getValue(filename);
         if (fileValue != null) {
             return !fileValue.equals("0");
@@ -146,7 +130,7 @@ public class FileUtils {
         return defValue;
     }
 
-    static void setProp(String prop, boolean value) {
+    public static void setProp(String prop, boolean value) {
         if (value) {
             SystemProperties.set(prop, "1");
         } else {

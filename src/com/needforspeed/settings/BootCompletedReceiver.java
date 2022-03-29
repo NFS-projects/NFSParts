@@ -38,6 +38,8 @@ import com.needforspeed.settings.vibration.VibrationFragment;
 import com.needforspeed.settings.vibration.VibrationUtils;
 import com.needforspeed.settings.fps.FPSInfoService;
 import com.needforspeed.settings.display.KcalUtils;
+import com.needforspeed.settings.other.OtherFragment;
+import com.needforspeed.settings.other.OtherUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
 
@@ -71,14 +73,14 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         VibrationUtils.setValue(VibrationFragment.VIBRATION_CALL_PATH, Settings.Secure.getInt(
                 context.getContentResolver(), VibrationFragment.PREF_VIBRATION_CALL_STRENGTH, 80) / 100.0 * (VibrationFragment.MAX_VIBRATION - VibrationFragment.MIN_VIBRATION) + VibrationFragment.MIN_VIBRATION);
 
-        FileUtils.setValue(NfsDeviceFragment.USB_FASTCHARGE_PATH, Settings.Secure.getInt(context.getContentResolver(),
-                NfsDeviceFragment.PREF_USB_FASTCHARGE, 0));
+        OtherUtils.setValue(OtherFragment.USB_FASTCHARGE_PATH, Settings.Secure.getInt(context.getContentResolver(),
+                OtherFragment.PREF_USB_FASTCHARGE, 0));
 
-        FileUtils.setValue(NfsDeviceFragment.FP_BOOST_PATH, Settings.Secure.getInt(context.getContentResolver(),
-                NfsDeviceFragment.PREF_FP_BOOST, 0));
+        OtherUtils.setValue(OtherFragment.FP_BOOST_PATH, Settings.Secure.getInt(context.getContentResolver(),
+                OtherFragment.PREF_FP_BOOST, 0));
 
-        FileUtils.setValue(NfsDeviceFragment.FSYNC_PATH, Settings.Secure.getInt(context.getContentResolver(),
-                NfsDeviceFragment.PREF_FSYNC, 0));
+        OtherUtils.setValue(OtherFragment.FSYNC_PATH, Settings.Secure.getInt(context.getContentResolver(),
+                OtherFragment.PREF_FSYNC, 0));
 
         TorchUtils.setValue(TorchSettings.TORCH_1_BRIGHTNESS_PATH,
                 Settings.Secure.getInt(context.getContentResolver(),
@@ -87,7 +89,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
                 Settings.Secure.getInt(context.getContentResolver(),
                         TorchSettings.KEY_YELLOW_TORCH_BRIGHTNESS, 100));
 
-        boolean enabled = sharedPrefs.getBoolean(NfsDeviceFragment.PREF_KEY_FPS_INFO, false);
+        boolean enabled = sharedPrefs.getBoolean(OtherFragment.PREF_KEY_FPS_INFO, false);
         if (enabled) {
             context.startService(new Intent(context, FPSInfoService.class));
         }

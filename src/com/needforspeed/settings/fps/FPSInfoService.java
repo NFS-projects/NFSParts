@@ -42,7 +42,7 @@ import android.view.WindowManager;
 import java.lang.StringBuffer;
 import java.lang.Math;
 
-import com.needforspeed.settings.FileUtils;
+import com.needforspeed.settings.other.OtherUtils;
 
 public class FPSInfoService extends Service {
     private View mView;
@@ -189,7 +189,7 @@ public class FPSInfoService extends Service {
                 while (!mInterrupt) {
                     sleep(1000);
                     StringBuffer sb=new StringBuffer();
-                    String fpsVal = FileUtils.readLine(MEASURED_FPS);
+                    String fpsVal = OtherUtils.readLine(MEASURED_FPS);
                     mHandler.sendMessage(mHandler.obtainMessage(1, fpsVal));
                 }
             } catch (InterruptedException e) {

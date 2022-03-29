@@ -15,7 +15,7 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.needforspeed.settings;
+package com.needforspeed.settings.other;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,7 +24,9 @@ import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceManager;
 
-import com.needforspeed.settings.NfsDeviceFragment;
+import com.needforspeed.settings.R;
+
+import com.needforspeed.settings.other.OtherFragment;
 
 public class DynFsync implements OnPreferenceChangeListener {
 
@@ -35,26 +37,26 @@ public class DynFsync implements OnPreferenceChangeListener {
     }
 
     public static String getFile() {
-        if (FileUtils.fileWritable(NfsDeviceFragment.FSYNC_PATH)) {
-            return NfsDeviceFragment.FSYNC_PATH;
+        if (OtherUtils.fileWritable(OtherFragment.FSYNC_PATH)) {
+            return OtherFragment.FSYNC_PATH;
         }
         return null;
     }
 
     public static boolean isSupported() {
-        return FileUtils.fileWritable(getFile());
+        return OtherUtils.fileWritable(getFile());
     }
 
     public static boolean isCurrentlyEnabled(Context context) {
-        return FileUtils.getFileValueAsBoolean(getFile(), false);
+        return OtherUtils.getFileValueAsBoolean(getFile(), false);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object value) {
         final String key = preference.getKey();
         switch (key) {
-            case NfsDeviceFragment.PREF_FSYNC:
-                FileUtils.setValue(NfsDeviceFragment.FSYNC_PATH, (boolean) value);
+            case OtherFragment.PREF_FSYNC:
+                OtherUtils.setValue(OtherFragment.FSYNC_PATH, (boolean) value);
                 break;
 
             default:

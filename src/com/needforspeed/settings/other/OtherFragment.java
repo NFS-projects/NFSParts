@@ -1,0 +1,113 @@
+package com.needforspeed.settings.other;
+
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.Context;
+import android.os.Bundle;
+import android.content.SharedPreferences;
+import androidx.preference.PreferenceFragment;
+import androidx.preference.PreferenceManager;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.PreferenceCategory;
+
+import com.needforspeed.settings.preferences.CustomSeekBarPreference;
+import com.needforspeed.settings.preferences.SecureSettingListPreference;
+import com.needforspeed.settings.preferences.SecureSettingSwitchPreference;
+import com.needforspeed.settings.preferences.VibrationSeekBarPreference;
+import com.needforspeed.settings.fps.FPSInfoService;
+import com.needforspeed.settings.utils.FileUtils;
+
+import com.needforspeed.settings.R;
+
+import java.lang.Math.*;
+
+public class OtherFragment extends PreferenceFragment implements
+        Preference.OnPreferenceChangeListener {
+        
+    public static final String PREF_CAMERA = "camera";
+    public static final String CAMERA_SYSTEM_PROPERTY = "persist.camera.profile";
+
+    public static final String PREF_USB_FASTCHARGE = "fastcharge";
+    public static final String USB_FASTCHARGE_PATH = "/sys/kernel/fast_charge/force_fast_charge";
+
+    public static final String PREF_FP_BOOST = "fpboost";
+    public static final String FP_BOOST_PATH = "/sys/kernel/fp_boost/enabled";
+
+    public static final String PREF_FSYNC = "fsync";
+    public static final String FSYNC_PATH = "/sys/kernel/dyn_fsync/Dyn_fsync_active";
+
+    public static final String PREF_KEY_FPS_INFO = "fps_info";
+
+    private SecureSettingListPreference mCamera;
+
+    private static Context mContext;
+    
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.other_settings, rootKey);
+        mContext = this.getContext();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+
+        // HAL3|HAL1 Switch button profiles
+        mCamera = (SecureSettingListPreference) findPreference(PREF_CAMERA);
+        mCamera.setValue(FileUtils.getStringProp(CAMERA_SYSTEM_PROPERTY, "0"));
+        mCamera.setSummary(mCamera.getEntry());
+        mCamera.setOnPreferenceChangeListener(this);
+
+        SecureSettingSwitchPreference charge = (SecureSettingSwitchPreference) findPreference(PREF_USB_FASTCHARGE);
+        charge.setEnabled(Fastcharge.isSupported());
+        charge.setChecked(Fastcharge.isCurrentlyEnabled(this.getContext()));
+        charge.setOnPreferenceChangeListener(new Fastcharge(getContext()));
+
+        SecureSettingSwitchPreference fp = (SecureSettingSwitchPreference) findPreference(PREF_FP_BOOST);
+        fp.setEnabled(FpBoost.isSupported());
+        fp.setChecked(FpBoost.isCurrentlyEnabled(this.getContext()));
+        fp.setOnPreferenceChangeListener(new FpBoost(getContext()));
+
+        SecureSettingSwitchPreference dyn = (SecureSettingSwitchPreference) findPreference(PREF_FSYNC);
+        dyn.setEnabled(DynFsync.isSupported());
+        dyn.setChecked(DynFsync.isCurrentlyEnabled(this.getContext()));
+        dyn.setOnPreferenceChangeListener(new DynFsync(getContext()));
+
+        SecureSettingSwitchPreference fpsInfo = (SecureSettingSwitchPreference) findPreference(PREF_KEY_FPS_INFO);
+        fpsInfo.setChecked(prefs.getBoolean(PREF_KEY_FPS_INFO, false));
+        fpsInfo.setOnPreferenceChangeListener(this);
+
+    }
+    
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object value) {
+        final String key = preference.getKey();
+        switch (key) {
+
+            case PREF_CAMERA:
+                mCamera.setValue((String) value);
+               	mCamera.setSummary(mCamera.getEntry());
+                FileUtils.setStringProp(CAMERA_SYSTEM_PROPERTY, (String) value);
+                break;
+
+            case PREF_KEY_FPS_INFO:
+                boolean enabled = (Boolean) value;
+                Intent fpsinfo = new Intent(this.getContext(), FPSInfoService.class);
+                if (enabled) {
+                    this.getContext().startService(fpsinfo);
+                } else {
+                    this.getContext().stopService(fpsinfo);
+                }
+                break;
+        }
+        return true;
+    }
+    
+    private boolean isAppNotInstalled(String uri) {
+        PackageManager packageManager = getContext().getPackageManager();
+        try {
+            packageManager.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+            return false;
+        } catch (PackageManager.NameNotFoundException e) {
+            return true;
+        }
+    }
+}

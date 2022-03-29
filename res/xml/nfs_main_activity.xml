@@ -77,32 +77,16 @@
 
     <PreferenceCategory
         android:title="@string/other" >
-
-        <com.needforspeed.settings.preferences.SecureSettingSwitchPreference
-            android:key="fastcharge"
-            android:defaultValue="true"
-            android:title="@string/fastcharge_title"
-            android:icon="@drawable/ic_usb_fastcharge"
-            android:summary="@string/fastcharge_summary" />
-
-        <com.needforspeed.settings.preferences.SecureSettingSwitchPreference
-            android:key="fpboost"
-            android:defaultValue="true"
-            android:title="@string/fpboost_title"
-            android:icon="@drawable/ic_fpboost" />
-
-        <com.needforspeed.settings.preferences.SecureSettingSwitchPreference
-            android:key="fsync"
-            android:defaultValue="true"
-            android:title="@string/fsync_title"
-            android:icon="@drawable/ic_fsync" />
-
-        <com.needforspeed.settings.preferences.SecureSettingSwitchPreference
-			android:key="fps_info"
-			android:icon="@drawable/ic_fps_info"
-			android:title="@string/fps_info_title"
-			android:summary="@string/fps_info_summary"
-			android:persistent="true"/>
+        
+        <PreferenceScreen
+            android:icon="@drawable/ic_other"
+            android:title="@string/other_title"
+            android:summary="@string/other_summary">
+            <intent
+                android:targetPackage="com.needforspeed.settings"
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.needforspeed.settings.other.OtherActivity" />
+        </PreferenceScreen>
 
     </PreferenceCategory>
 

@@ -15,7 +15,7 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.needforspeed.settings;
+package com.needforspeed.settings.other;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,37 +24,39 @@ import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceManager;
 
-import com.needforspeed.settings.NfsDeviceFragment;
+import com.needforspeed.settings.R;
 
-public class Fastcharge implements OnPreferenceChangeListener {
+import com.needforspeed.settings.other.OtherFragment;
+
+public class FpBoost implements OnPreferenceChangeListener {
 
     private Context mContext;
 
-    public Fastcharge(Context context) {
+    public FpBoost(Context context) {
         mContext = context;
     }
 
     public static String getFile() {
-        if (FileUtils.fileWritable(NfsDeviceFragment.USB_FASTCHARGE_PATH)) {
-            return NfsDeviceFragment.USB_FASTCHARGE_PATH;
+        if (OtherUtils.fileWritable(OtherFragment.FP_BOOST_PATH)) {
+            return OtherFragment.FP_BOOST_PATH;
         }
         return null;
     }
 
     public static boolean isSupported() {
-        return FileUtils.fileWritable(getFile());
+        return OtherUtils.fileWritable(getFile());
     }
 
     public static boolean isCurrentlyEnabled(Context context) {
-        return FileUtils.getFileValueAsBoolean(getFile(), false);
+        return OtherUtils.getFileValueAsBoolean(getFile(), false);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object value) {
         final String key = preference.getKey();
         switch (key) {
-            case NfsDeviceFragment.PREF_USB_FASTCHARGE:
-                FileUtils.setValue(NfsDeviceFragment.USB_FASTCHARGE_PATH, (boolean) value);
+            case OtherFragment.PREF_FP_BOOST:
+                OtherUtils.setValue(OtherFragment.FP_BOOST_PATH, (boolean) value);
                 break;
 
             default:

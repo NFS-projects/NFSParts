@@ -27,6 +27,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.NullPointerException;
 import java.lang.SecurityException;
+import android.os.SystemProperties;
 
 public final class FileUtils {
     private static final String TAG = "FileUtils";
@@ -41,6 +42,35 @@ public final class FileUtils {
      *
      * @return the read line contents, or null on failure
      */
+     
+    public static String getStringProp(String prop, String defaultValue) {
+        return SystemProperties.get(prop, defaultValue);
+    }
+    
+    public static void setStringProp(String prop, String value) {
+        SystemProperties.set(prop, value);
+    }
+    
+    public static void setintProp(String prop, int value) {
+        SystemProperties.set(prop, String.valueOf(value));
+    }
+
+    public static int getintProp(String prop, int defaultValue) {
+        return SystemProperties.getInt(prop, defaultValue);
+    }
+    
+    public static void setProp(String prop, boolean value) {
+        if (value) {
+            SystemProperties.set(prop, "1");
+        } else {
+            SystemProperties.set(prop, "0");
+        }
+    }
+
+    public static boolean getProp(String prop, boolean defaultValue) {
+        return SystemProperties.getBoolean(prop, defaultValue);
+    }
+
     public static String readOneLine(String fileName) {
         String line = null;
         BufferedReader reader = null;
