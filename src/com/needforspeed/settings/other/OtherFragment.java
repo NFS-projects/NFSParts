@@ -24,9 +24,6 @@ import java.lang.Math.*;
 
 public class OtherFragment extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {
-        
-    public static final String PREF_CAMERA = "camera";
-    public static final String CAMERA_SYSTEM_PROPERTY = "persist.camera.profile";
 
     public static final String PREF_USB_FASTCHARGE = "fastcharge";
     public static final String USB_FASTCHARGE_PATH = "/sys/kernel/fast_charge/force_fast_charge";
@@ -39,8 +36,6 @@ public class OtherFragment extends PreferenceFragment implements
 
     public static final String PREF_KEY_FPS_INFO = "fps_info";
 
-    private SecureSettingListPreference mCamera;
-
     private static Context mContext;
     
 
@@ -49,12 +44,6 @@ public class OtherFragment extends PreferenceFragment implements
         setPreferencesFromResource(R.xml.other_settings, rootKey);
         mContext = this.getContext();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-
-        // HAL3|HAL1 Switch button profiles
-        mCamera = (SecureSettingListPreference) findPreference(PREF_CAMERA);
-        mCamera.setValue(FileUtils.getStringProp(CAMERA_SYSTEM_PROPERTY, "0"));
-        mCamera.setSummary(mCamera.getEntry());
-        mCamera.setOnPreferenceChangeListener(this);
 
         SecureSettingSwitchPreference charge = (SecureSettingSwitchPreference) findPreference(PREF_USB_FASTCHARGE);
         charge.setEnabled(Fastcharge.isSupported());
@@ -81,12 +70,6 @@ public class OtherFragment extends PreferenceFragment implements
     public boolean onPreferenceChange(Preference preference, Object value) {
         final String key = preference.getKey();
         switch (key) {
-
-            case PREF_CAMERA:
-                mCamera.setValue((String) value);
-               	mCamera.setSummary(mCamera.getEntry());
-                FileUtils.setStringProp(CAMERA_SYSTEM_PROPERTY, (String) value);
-                break;
 
             case PREF_KEY_FPS_INFO:
                 boolean enabled = (Boolean) value;
