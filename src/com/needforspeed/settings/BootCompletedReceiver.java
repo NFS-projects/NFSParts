@@ -26,8 +26,6 @@ import android.util.Log;
 import android.provider.Settings;
 import androidx.preference.PreferenceManager;
 
-import java.lang.Math.*;
-
 import com.needforspeed.settings.soundcontrol.SoundControlSettings;
 import com.needforspeed.settings.soundcontrol.SoundControlFileUtils;
 import com.needforspeed.settings.dirac.DiracUtils;
