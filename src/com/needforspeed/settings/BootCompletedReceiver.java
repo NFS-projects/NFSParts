@@ -51,7 +51,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
         if (DEBUG) Log.d(TAG, "Received boot completed intent");
             DozeUtils.checkDozeService(context);
-            new DiracUtils(context).onBootCompleted();
+            DiracUtils.initialize(context);
 
         if (KcalUtils.isKcalSupported())
             KcalUtils.writeCurrentSettings(sharedPrefs);
