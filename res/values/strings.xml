@@ -42,9 +42,9 @@
     <string name="clear_speaker_description">Run this feature once or twice if you find that your speaker is lightly blocked by dust. Set media volume to maximum.\n\nIf the speaker is blocked heavily, run this feature 2-5 times while shaking your device with the speaker facing downwards.</string>
     
     <!-- Dirac settings -->
-    <string name="dirac_enable">Use Mi Sound Enhancer</string>
-    <string name="dirac_title">Mi Sound</string>
+    <string name="dirac_title">Mi Sound Enhancer</string>
     <string name="dirac_summary">Optimize audio quality</string>
+    <string name="dirac_enable">Use Mi Sound Enhancer</string>
     <string name="dirac_headset_title">Choose headphones type</string>
     <string name="dirac_preset_title">Choose a preset</string>
 
@@ -87,7 +87,7 @@
     <string name="dirac_preset_bass_booster">Bass Booster</string>
 
      <!-- QS tile title -->
-    <string name="dirac_qs_tile_title">Mi sound</string>
+    <string name="dirac_qs_tile_title">Dirac sound</string>
 
     <!-- Ambient settings -->
     <string name="ambient_enable">Use ambient display</string>

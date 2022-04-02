@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 The LineageOS Project
+ * Copyright (C) 2018,2020 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +24,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Switch;
 import androidx.preference.Preference;
+import androidx.preference.ListPreference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.SwitchPreference;
-import androidx.preference.ListPreference;
 
 import com.needforspeed.settings.R;
 
@@ -48,16 +48,14 @@ public class DiracSettingsFragment extends PreferenceFragment implements
     private ListPreference mHeadsetType;
     private ListPreference mPreset;
 
-    private DiracUtils mDiracUtils;
     private Handler mHandler = new Handler();
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.dirac_settings);
 
-        mDiracUtils = new DiracUtils(getContext());
-
-        boolean enhancerEnabled = mDiracUtils.isDiracEnabled();
+	DiracUtils.initialize(getActivity());
+        boolean enhancerEnabled = DiracUtils.isDiracEnabled();
 
         mSwitchBar = (MainSwitchPreference) findPreference(PREF_ENABLE);
         mSwitchBar.addOnSwitchChangeListener(this);
@@ -76,10 +74,10 @@ public class DiracSettingsFragment extends PreferenceFragment implements
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         switch (preference.getKey()) {
             case PREF_HEADSET:
-                mDiracUtils.setHeadsetType(Integer.parseInt(newValue.toString()));
+                DiracUtils.setHeadsetType(Integer.parseInt(newValue.toString()));
                 return true;
             case PREF_PRESET:
-                mDiracUtils.setLevel(String.valueOf(newValue));
+                DiracUtils.setLevel(String.valueOf(newValue));
                 return true;
             default: return false;
         }
@@ -87,6 +85,7 @@ public class DiracSettingsFragment extends PreferenceFragment implements
 
     @Override
     public void onSwitchChanged(Switch switchView, boolean isChecked) {
+        DiracUtils.setEnabled(isChecked);
         mSwitchBar.setChecked(isChecked);
         if (isChecked){
             mSwitchBar.setEnabled(false);
